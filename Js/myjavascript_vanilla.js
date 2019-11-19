@@ -9,3 +9,6 @@ class Products{
 
     }
 }
+
+
+var laptop = new Products('Macbook pro', 3500,'Laptop','image6',10);
