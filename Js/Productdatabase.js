@@ -1,4 +1,4 @@
-let ProductDatabse = [
+let ProductDatabase = [
     {
         name:'Gucci tshirt',
         price: 100,
@@ -55,12 +55,15 @@ let ProductDatabse = [
         type:'House deco',
         logo: 'assets/item2.jpeg',
         quantity:50,
+        More:[{
+            type:['with flower', 'without flower']
+        }]
     },
     {
         name:'Macbook Pro',
         price:3500,
         type:'Electronics',
-        logo: 'item6.jpg',
+        logo: 'assets/item6.jpg',
         quantity:20,
         options:{
             More:[{

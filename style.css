@@ -4,7 +4,7 @@
  }
  .colormenu
  {
-     background-color: #DFDEEE;
+     background-color: #ff6666;
      border-radius:14px
  }
  .colormenu :hover{
@@ -71,12 +71,20 @@
 
 .dropdown:hover .dropbtn {background-color: orange;}
 .dropbtn {
-    background-color: #ffe34d;
-    color: white;
+    background-color: #FAFAD2;
+    color: black;
     padding: 16px;
     font-size: 16px;
     border: none;
     border-radius: 12px;
+    width:50px;
+    font-weight: 700;
+}
+.dropbtn:hover{
+    background:#00cec9;
+}
+.dropbtn:active{
+    background:#00cec9;
 }
 body{
     background-image: url("assets/backgroundimage.jpg");
@@ -84,5 +92,23 @@ body{
     background-position: center;
     background-repeat: repeat;
     position: relative;
-  }
+}
+.falsespace{
+    height:75px;
+}
+.card{
+    border-radius:12px;
+    left:1%;
+    border:1.5px solid;
+    background:#DFDEEE;
+}
+.btn{
+    position:relative;
+    bottom:1%;
+}
+.cardbody{
+    /*background:#b2bec3;*/
+    height:500px;
+}
+
   
