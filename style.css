@@ -94,7 +94,7 @@ body{
     position: relative;
 }
 .falsespace{
-    height:75px;
+    height:88px;
 }
 .card{
     border-radius:12px;
@@ -110,5 +110,13 @@ body{
     /*background:#b2bec3;*/
     height:500px;
 }
-
-  
+.boxed{
+    background:#b2bec3;
+    /*border:2px solid;*/
+    height:40px;
+    width:60px;
+    text-align: center;
+}
+.inlineElement{
+    display:inline-block;
+}
