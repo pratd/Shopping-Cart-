@@ -27,7 +27,7 @@ function renderProducts(){
         let newNodeNumberItems= document.createElement('input');
         newNodeNumberItems.classList.add('form-control','boxed', 'inlineElement');
         newNodeNumberItems.placeholder='Add';
-        newNodeNumberItems.id = element['typeofProduct'];
+        newNodeNumberItems.id = element['name'];
         newNodeNumberItems.value=0;
         //buttons
         let newNodebuttonleft = document.createElement('button');
@@ -124,19 +124,60 @@ renderProducts();
 
 function UpdateValueIncrement(){
    var elem = this.getAttribute('marketbuy');
-    document.getElementById(elem).value = parseInt (document.getElementById(elem).value) +1;
     Cardarray.forEach(element => {
-        if (typeof document.getElementById(element['IdA']) !== 'undefined' ) {
-    
+        if (elem === element['name']){
+            if (document.getElementById(element['optionsofProduct']['Stock']).value !== '0' ) {
+                var stockvalue = document.getElementById(element['optionsofProduct']['Stock']).value;
+                stockvalue = Math.max( parseInt(stockvalue) - 1, 0 );
+                //get the maximum value of the array
+                index1 = document.getElementById(element['IdA']).value;
+                if ( document.getElementById(element['IdB']) === null){
+                    maxmimumValue = parseInt(element['optionsofProduct']['Stock'][index1]);
+                }else{
+                    var index2 = document.getElementById(element['IdB']).value;
+                    maxmimumValue = parseInt(element['optionsofProduct']['Stock'][index1][index2]);
                 }
-                document.getElementById(element['optionsofProduct']['Stock']).value =
-                 parseInt(element['optionsofProduct']['Stock'])
+                document.getElementById(elem).value = Math.min( maxmimumValue, parseInt(document.getElementById(elem).value) +1);
+                document.getElementById(element['optionsofProduct']['Stock']).value = stockvalue;
+            }else{
+                
+                document.getElementById(element['optionsofProduct']['Stock']).value = 0;
+                return false;
+            }            
+        }
     });
 }
 
 function UpdateValueDecrement(){
     var elem = this.getAttribute('marketbuy');
-     document.getElementById(elem).value = Math.max(parseInt (document.getElementById(elem).value) -1,0);
+     Cardarray.forEach(element => {
+         if (elem ==element["name"]){
+            if (document.getElementById(elem).value !== '0' ) {
+                var stockvalue = document.getElementById(element['optionsofProduct']['Stock']).value;
+                //get the maximum value of the array
+                index1 = document.getElementById(element['IdA']).value;
+                if (document.getElementById(element['IdB']) == null){
+                    maxmimumValue = parseInt(element['optionsofProduct']['Stock'][index1]);
+                }else{
+                    var index2 = document.getElementById(element['IdB']).value;
+                    maxmimumValue = parseInt(element['optionsofProduct']['Stock'][index1][index2]);
+                }
+                document.getElementById(elem).value = Math.max( 0, parseInt(document.getElementById(elem).value) -1);
+                stockvalue = Math.max( parseInt(stockvalue) + 1, 0 );
+                document.getElementById(element['optionsofProduct']['Stock']).value = stockvalue;
+            }else{
+                console.log('b')
+                if (document.getElementById(element['IdB']) == null){
+                    maxmimumValue = parseInt(element['optionsofProduct']['Stock'][index1]);
+                }else{
+                    var index2 = document.getElementById(element['IdB']).value;
+                    maxmimumValue = parseInt(element['optionsofProduct']['Stock'][index1][index2]);
+                }
+                document.getElementById(element['optionsofProduct']['Stock']).value = maxmimumValue;
+                return false;
+            }
+         }
+    });
  }
 
  function ShowtypeA(){
@@ -147,10 +188,9 @@ function UpdateValueDecrement(){
             document.getElementById(element['IdA']).value= index;
             if(element['IdA']=== 1 || element['IdA']=== 4 || element['IdA']=== 6){
                 if (typeof document.getElementById(element['IdA']).value !== 'undefined' ) {
-                        if (typeof document.getElementById(element['IdB'].value) !== 'undefined' ){
+                        if (document.getElementById(element['IdB']).value !== null ){
                             index1 = index;
                             index2 = document.getElementById(element['IdB']).value;
-                            //console.log(index2)
                             document.getElementById(element['optionsofProduct']['Stock']).value =
                             parseInt(element['optionsofProduct']['Stock'][index1][index2]);
                         }else{
@@ -160,10 +200,9 @@ function UpdateValueDecrement(){
                             parseInt(element['optionsofProduct']['Stock'][index1][index2]);
                         }
                 } else{
-                    if (typeof document.getElementById(element['IdB'].value) !== 'undefined' ){
+                    if ( document.getElementById(element['IdB']).value !== null ){
                         index1 = '0';
                         index2 = document.getElementById(element['IdB']).value;
-                        //console.log(index2)
                         document.getElementById(element['optionsofProduct']['Stock']).value =
                         parseInt(element['optionsofProduct']['Stock'][index1][index2]);
                     }else{
@@ -188,7 +227,6 @@ function UpdateValueDecrement(){
             }
        }
    });
-   console.log('a')
 }   
 
 function ShowtypeB(){
@@ -197,7 +235,6 @@ function ShowtypeB(){
     Cardarray.forEach(element => {
         if (parent == element['name']){
              document.getElementById(element['IdB']).value= index;
-             
              if(element['IdB']=== '1a' || element['IdB']=== '4a' || element['IdB']=== '6a'){
                 if (typeof document.getElementById(element['IdB']).value !== 'undefined' ) {
                         if (typeof document.getElementById(element['IdA']).value !=='undefined') {
