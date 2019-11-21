@@ -1,8 +1,8 @@
 var Cardarray=[];
 i=0;
 ProductDatabase.forEach(element => {
-    var temporary = new Products(element.name,element.price,element.type,
-        element.logo, element.options)
+    var temporary = new Products(element.IdstockA, element.IdstockB,element.name,element.price,element.type,
+        element.logo, element.quantity,element.options)
     Cardarray[i] = temporary;
     i=i+1;
 });
