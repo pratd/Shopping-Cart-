@@ -1,5 +1,5 @@
 let Itemselement = document.querySelector('#items');
-
+let CartFinal = [];
 function renderProducts(){
     Cardarray.forEach(element => {
 
@@ -21,7 +21,8 @@ function renderProducts(){
         // creating the price part
         let newNodePrice = document.createElement('p');
         newNodePrice.classList.add('card-text');
-        newNodePrice.textContent = element['priceofProduct'] + '€';
+        newNodePrice.id = element['priceofProduct'];
+        newNodePrice.textContent = element['priceofProduct'] + ' €';
 
         //creating the blank space to increment the numbers 
         let newNodeNumberItems= document.createElement('input');
@@ -91,7 +92,13 @@ function renderProducts(){
         newNodeStock.id = element['optionsofProduct']['Stock'];
         //newNodeStock.setAttribute('Stock',element['name']);
         newNodeStock.value=0;
-
+        
+        //create the buy button
+        let newNodeBuy  = document.createElement('button');
+        newNodeBuy.classList.add('btn', 'btn-primary', 'Buybtn', 'inlineElement');
+        newNodeBuy.textContent = 'BUY';
+        newNodeBuy.setAttribute('Buy', element['name']);
+        //newNodeBuy.addEventListener('click', PushtoCart);
 
         //append childs
         if (selectarrayA !== undefined){
@@ -102,8 +109,9 @@ function renderProducts(){
             newNodeSelectbody.appendChild(newNodeSelectB);
             newNodeSelectbody.appendChild(tempNodeB);
         }
+
+
         newNodeSelectbody.appendChild(newNodeStock);
-        
         newNodeCardbody.appendChild(newNodeTitle);
         newNodeCardbody.appendChild(newNodeImage);
         newNodeCardbody.appendChild(newNodePrice);
@@ -113,6 +121,7 @@ function renderProducts(){
         newNodeCardbody.appendChild(newNodeNumberItems);
         newNodeCardbody.appendChild(newNodebuttonright);
         newNodeCardbody.appendChild(newNodeSelectbody);
+        newNodeCardbody.appendChild(newNodeBuy);
         newNode.appendChild(newNodeCardbody);
         Itemselement.appendChild(newNode);
 
@@ -188,28 +197,36 @@ function UpdateValueDecrement(){
             document.getElementById(element['IdA']).value= index;
             if(element['IdA']=== 1 || element['IdA']=== 4 || element['IdA']=== 6){
                 if (typeof document.getElementById(element['IdA']).value !== 'undefined' ) {
-                        if (document.getElementById(element['IdB']).value !== null ){
+                        if (document.getElementById(element['IdB']).value !== undefined ){
                             index1 = index;
                             index2 = document.getElementById(element['IdB']).value;
                             document.getElementById(element['optionsofProduct']['Stock']).value =
                             parseInt(element['optionsofProduct']['Stock'][index1][index2]);
+                            document.getElementById(element['priceofProduct']).textContent = 
+                            parseInt(element['optionsofProduct']['Price'][index1][index2]) + ' €';
                         }else{
                             index1 = index;
                             index2 = '0';
                             document.getElementById(element['optionsofProduct']['Stock']).value =
                             parseInt(element['optionsofProduct']['Stock'][index1][index2]);
+                            document.getElementById(element['priceofProduct']).textContent = 
+                            parseInt(element['optionsofProduct']['Price'][index1][index2]) + ' €';
                         }
                 } else{
-                    if ( document.getElementById(element['IdB']).value !== null ){
+                    if ( document.getElementById(element['IdB']).value !== undefined ){
                         index1 = '0';
                         index2 = document.getElementById(element['IdB']).value;
                         document.getElementById(element['optionsofProduct']['Stock']).value =
                         parseInt(element['optionsofProduct']['Stock'][index1][index2]);
+                        document.getElementById(element['priceofProduct']).textContent = 
+                        parseInt(element['optionsofProduct']['Price'][index1][index2]) + ' €';
                     }else{
                         index1 = '0';
                         index2 = '0';
                         document.getElementById(element['optionsofProduct']['Stock']).value =
                         parseInt(element['optionsofProduct']['Stock'][index1][index2]);
+                        document.getElementById(element['priceofProduct']).textContent = 
+                        parseInt(element['optionsofProduct']['Price'][index1][index2]) + ' €';
                     }  
                 }         
             }else{
@@ -217,11 +234,15 @@ function UpdateValueDecrement(){
                     index1= index;
                     document.getElementById(element['optionsofProduct']['Stock']).value =
                     parseInt(element['optionsofProduct']['Stock'][index1]);
+                    document.getElementById(element['priceofProduct']).textContent = 
+                    parseInt(element['optionsofProduct']['Price'][index1]) + ' €';
                         
                 } else{
                     index1='0';
                     document.getElementById(element['optionsofProduct']['Stock']).value =
                     parseInt(element['optionsofProduct']['Stock'][index1]);
+                    document.getElementById(element['priceofProduct']).textContent = 
+                    parseInt(element['optionsofProduct']['Price'][index1]) + ' €';
                 }         
 
             }
@@ -242,11 +263,15 @@ function ShowtypeB(){
                             index2 = index;
                             document.getElementById(element['optionsofProduct']['Stock']).value =
                             parseInt(element['optionsofProduct']['Stock'][index1][index2]);
+                            document.getElementById(element['priceofProduct']).textContent = 
+                            parseInt(element['optionsofProduct']['Price'][index1][index2]) + ' €';
                         }else{
                             index1 = '0';
                             index2 = index;
                             document.getElementById(element['optionsofProduct']['Stock']).value =
                             parseInt(element['optionsofProduct']['Stock'][index1][index2]);
+                            document.getElementById(element['priceofProduct']).textContent = 
+                            parseInt(element['optionsofProduct']['Price'][index1][index2]) + ' €';
                         }
                 } else{
                     if (typeof document.getElementById(element['IdA']).value !=='undefined' ){
@@ -255,11 +280,15 @@ function ShowtypeB(){
                         //console.log(index2)
                         document.getElementById(element['optionsofProduct']['Stock']).value =
                         parseInt(element['optionsofProduct']['Stock'][index1][index2]);
+                        document.getElementById(element['priceofProduct']).textContent = 
+                        parseInt(element['optionsofProduct']['Price'][index1][index2]) + ' €';
                     }else{
                         index1 = '0';
                         index2 = '0';
                         document.getElementById(element['optionsofProduct']['Stock']).value =
                         parseInt(element['optionsofProduct']['Stock'][index1][index2]);
+                        document.getElementById(element['priceofProduct']).textContent = 
+                        parseInt(element['optionsofProduct']['Price'][index1][index2]) + ' €';
                     }  
                 }         
             }else{
@@ -267,15 +296,22 @@ function ShowtypeB(){
                     index2= index;
                     document.getElementById(element['optionsofProduct']['Stock']).value =
                     parseInt(element['optionsofProduct']['Stock'][index2]);
+                    document.getElementById(element['priceofProduct']).textContent = 
+                    parseInt(element['optionsofProduct']['Price'][index2]) + ' €';
                         
                 } else{
                     index2='0';
                     document.getElementById(element['optionsofProduct']['Stock']).value =
                     parseInt(element['optionsofProduct']['Stock'][index2]);
+                    document.getElementById(element['priceofProduct']).textContent = 
+                    parseInt(element['optionsofProduct']['Price'][index2]) + ' €';
                 }         
 
             }
         }
     })
    
-}   
+} 
+function PushtoCart(){
+    CartFinal.push(this.getAttribute('Buy'))
+}
