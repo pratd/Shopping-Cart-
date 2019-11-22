@@ -52,7 +52,7 @@ function renderProducts(){
         
         let newNodeSelectA = document.createElement('select');
         newNodeSelectA.classList.add('dropdown-content','col-sm-4');
-        newNodeSelectA.setAttribute('selected',element['name'])
+        newNodeSelectA.setAttribute('selectedA',element['name'])
         newNodeSelectA.addEventListener('change', ShowtypeA) ;
 
         var selectarrayA = element['optionsofProduct']['typeA'];
@@ -76,7 +76,7 @@ function renderProducts(){
         let newNodeSelectB = document.createElement('select');
         newNodeSelectB.classList.add('dropdown-content','col-sm-4');
         newNodeSelectB.innerHTML=options_strB;
-        newNodeSelectB.setAttribute('selected',element['name'])
+        newNodeSelectB.setAttribute('selectedB',element['name'])
         newNodeSelectB.addEventListener('change', ShowtypeB) ;
         //create a div element to store the variables hidden
         let tempNodeA = document.createElement('div');
@@ -151,7 +151,7 @@ function UpdateValueIncrement(){
                 }
                 document.getElementById(elem).value = Math.min( maxmimumValue, parseInt(document.getElementById(elem).value) +1);
                 document.getElementById(element['optionsofProduct']['Stock']).value = stockvalue;
-                window.localStorage.setItem('Item-Left ' + element['name'], stockvalue);
+                window.localStorage.setItem('Item-Left: ' + element['name'], stockvalue);
             }else{
                 document.getElementById(element['optionsofProduct']['Stock']).value = 0;
                 return false;
@@ -193,7 +193,7 @@ function UpdateValueDecrement(){
  }
 
  function ShowtypeA(){
-   var parent = this.getAttribute('selected');
+   var parent = this.getAttribute('selectedA');
    var index = this.selectedIndex;
    Cardarray.forEach(element => {
        if (parent == element['name']){
@@ -207,6 +207,8 @@ function UpdateValueDecrement(){
                             parseInt(element['optionsofProduct']['Stock'][index1][index2]);
                             document.getElementById(element['priceofProduct']).textContent = 
                             parseInt(element['optionsofProduct']['Price'][index1][index2]) + ' €';
+                            window.localStorage.setItem(element['name'], element['optionsofProduct']['tempA'][index1]+','+
+                            element['optionsofProduct']['tempB'][index2]);
                         }else{
                             index1 = index;
                             index2 = '0';
@@ -214,6 +216,8 @@ function UpdateValueDecrement(){
                             parseInt(element['optionsofProduct']['Stock'][index1][index2]);
                             document.getElementById(element['priceofProduct']).textContent = 
                             parseInt(element['optionsofProduct']['Price'][index1][index2]) + ' €';
+                            window.localStorage.setItem(element['name'], element['optionsofProduct']['tempA'][index1]+','+
+                            element['optionsofProduct']['tempB'][index2]);
                         }
                 } else{
                     if ( document.getElementById(element['IdB']).value !== undefined ){
@@ -223,6 +227,8 @@ function UpdateValueDecrement(){
                         parseInt(element['optionsofProduct']['Stock'][index1][index2]);
                         document.getElementById(element['priceofProduct']).textContent = 
                         parseInt(element['optionsofProduct']['Price'][index1][index2]) + ' €';
+                        window.localStorage.setItem(element['name'], element['optionsofProduct']['tempA'][index1]+','+
+                        element['optionsofProduct']['tempB'][index2]);
                     }else{
                         index1 = '0';
                         index2 = '0';
@@ -230,6 +236,8 @@ function UpdateValueDecrement(){
                         parseInt(element['optionsofProduct']['Stock'][index1][index2]);
                         document.getElementById(element['priceofProduct']).textContent = 
                         parseInt(element['optionsofProduct']['Price'][index1][index2]) + ' €';
+                        window.localStorage.setItem(element['name'], element['optionsofProduct']['tempA'][index1]+','+
+                        element['optionsofProduct']['tempB'][index2]);
                     }  
                 }         
             }else{
@@ -239,6 +247,7 @@ function UpdateValueDecrement(){
                     parseInt(element['optionsofProduct']['Stock'][index1]);
                     document.getElementById(element['priceofProduct']).textContent = 
                     parseInt(element['optionsofProduct']['Price'][index1]) + ' €';
+                    window.localStorage.setItem(element['name'], element['optionsofProduct']['tempA'][index1]);
                         
                 } else{
                     index1='0';
@@ -246,6 +255,7 @@ function UpdateValueDecrement(){
                     parseInt(element['optionsofProduct']['Stock'][index1]);
                     document.getElementById(element['priceofProduct']).textContent = 
                     parseInt(element['optionsofProduct']['Price'][index1]) + ' €';
+                    window.localStorage.setItem(element['name'], element['optionsofProduct']['tempA'][index1]);
                 }         
 
             }
@@ -254,7 +264,7 @@ function UpdateValueDecrement(){
 }   
 
 function ShowtypeB(){
-    var parent = this.getAttribute('selected');
+    var parent = this.getAttribute('selectedB');
     var index = this.selectedIndex;
     Cardarray.forEach(element => {
         if (parent == element['name']){
@@ -268,6 +278,8 @@ function ShowtypeB(){
                             parseInt(element['optionsofProduct']['Stock'][index1][index2]);
                             document.getElementById(element['priceofProduct']).textContent = 
                             parseInt(element['optionsofProduct']['Price'][index1][index2]) + ' €';
+                            window.localStorage.setItem(element['name'], element['optionsofProduct']['tempA'][index1]+','+
+                            element['optionsofProduct']['tempB'][index2]);
                         }else{
                             index1 = '0';
                             index2 = index;
@@ -275,6 +287,8 @@ function ShowtypeB(){
                             parseInt(element['optionsofProduct']['Stock'][index1][index2]);
                             document.getElementById(element['priceofProduct']).textContent = 
                             parseInt(element['optionsofProduct']['Price'][index1][index2]) + ' €';
+                            window.localStorage.setItem(element['name'], element['optionsofProduct']['tempA'][index1]+','+
+                            element['optionsofProduct']['tempB'][index2]);
                         }
                 } else{
                     if (typeof document.getElementById(element['IdA']).value !=='undefined' ){
@@ -285,6 +299,8 @@ function ShowtypeB(){
                         parseInt(element['optionsofProduct']['Stock'][index1][index2]);
                         document.getElementById(element['priceofProduct']).textContent = 
                         parseInt(element['optionsofProduct']['Price'][index1][index2]) + ' €';
+                        window.localStorage.setItem(element['name'], element['optionsofProduct']['tempA'][index1]+','+
+                        element['optionsofProduct']['tempB'][index2]);
                     }else{
                         index1 = '0';
                         index2 = '0';
@@ -292,6 +308,8 @@ function ShowtypeB(){
                         parseInt(element['optionsofProduct']['Stock'][index1][index2]);
                         document.getElementById(element['priceofProduct']).textContent = 
                         parseInt(element['optionsofProduct']['Price'][index1][index2]) + ' €';
+                        window.localStorage.setItem(element['name'], element['optionsofProduct']['tempA'][index1]+',' + 
+                        element['optionsofProduct']['tempB'][index2]);
                     }  
                 }         
             }else{
@@ -301,6 +319,7 @@ function ShowtypeB(){
                     parseInt(element['optionsofProduct']['Stock'][index2]);
                     document.getElementById(element['priceofProduct']).textContent = 
                     parseInt(element['optionsofProduct']['Price'][index2]) + ' €';
+                    window.localStorage.setItem(element['name'], element['optionsofProduct']['tempA'][index2] );
                         
                 } else{
                     index2='0';
@@ -308,6 +327,7 @@ function ShowtypeB(){
                     parseInt(element['optionsofProduct']['Stock'][index2]);
                     document.getElementById(element['priceofProduct']).textContent = 
                     parseInt(element['optionsofProduct']['Price'][index2]) + ' €';
+                    window.localStorage.setItem(element['name'], element['optionsofProduct']['tempA'][index2]);
                 }         
 
             }
@@ -318,21 +338,34 @@ function ShowtypeB(){
 let Itemsbought=[];
 function PushtoCart(){
     CartFinal.push(this.getAttribute('Buy'));
-    
     Cardarray.forEach(element => {
-        if (this.getAttribute('Buy')==element['name']){
-            Itemsbought.push({name: element['name'], Number:
-             document.getElementById(element['name']).value,
-              Price: document.getElementById(element['priceofProduct']).textContent })
-            window.localStorage.setItem('Item-Bought: ' + element['name'], JSON.stringify(Itemsbought));
-
+        if (this.getAttribute('Buy')===element['name']){
+            var productvalue = window.localStorage.getItem(element['name']);
+            for(i=0; i<Itemsbought.length; i++){
+                if(Itemsbought[i]['name']===this.getAttribute('Buy')){
+                    //console.log(Itemsbought[i]['ProductType'])
+                    if (Itemsbought[i]['ProductType'] === productvalue){
+                        //console.log(Itemsbought.indexOf(Itemsbought[i]['ProductType']))
+                        var Indexposition = i;
+                        Itemsbought.splice(Indexposition,1);
+                        console.log(i)
+                    }
+                }
+            }
+            Itemsbought.push({name: element['name'], 
+            Number:document.getElementById(element['name']).value,
+            Price: document.getElementById(element['priceofProduct']).textContent,
+            ProductType: productvalue });
+            window.localStorage.setItem('Items-Bought', JSON.stringify(Itemsbought));
         }
     });
     //console.log(Itemsbought)
-    //calculate total and render cart
+    //calculate total 
     calculateTotal();
-   // renderCart();
+    //update Div element
+    //UpdateDivElement();
 }
+
 function calculateTotal(){
     total = 0;
     for(let i = 0; i<Itemsbought.length; i++){
