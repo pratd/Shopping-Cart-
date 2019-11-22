@@ -1,7 +1,10 @@
+//functions for the shopping cart
+window.localStorage.clear();
 let Itemselement = document.querySelector('#items');
 let CartFinal = [];
 function renderProducts(){
     Cardarray.forEach(element => {
+        window.localStorage.setItem('Item ' + element['name'], JSON.stringify(element));
 
         let newNode = document.createElement('div');
         newNode.classList.add('card','col-sm-4');
@@ -98,7 +101,7 @@ function renderProducts(){
         newNodeBuy.classList.add('btn', 'btn-primary', 'Buybtn', 'inlineElement');
         newNodeBuy.textContent = 'BUY';
         newNodeBuy.setAttribute('Buy', element['name']);
-        //newNodeBuy.addEventListener('click', PushtoCart);
+        newNodeBuy.addEventListener('click', PushtoCart);
 
         //append childs
         if (selectarrayA !== undefined){
@@ -148,8 +151,8 @@ function UpdateValueIncrement(){
                 }
                 document.getElementById(elem).value = Math.min( maxmimumValue, parseInt(document.getElementById(elem).value) +1);
                 document.getElementById(element['optionsofProduct']['Stock']).value = stockvalue;
+                window.localStorage.setItem('Item-Left ' + element['name'], stockvalue);
             }else{
-                
                 document.getElementById(element['optionsofProduct']['Stock']).value = 0;
                 return false;
             }            
@@ -174,8 +177,8 @@ function UpdateValueDecrement(){
                 document.getElementById(elem).value = Math.max( 0, parseInt(document.getElementById(elem).value) -1);
                 stockvalue = Math.max( parseInt(stockvalue) + 1, 0 );
                 document.getElementById(element['optionsofProduct']['Stock']).value = stockvalue;
+                window.localStorage.setItem('Item-Left: ' + element['name'], stockvalue);
             }else{
-                console.log('b')
                 if (document.getElementById(element['IdB']) == null){
                     maxmimumValue = parseInt(element['optionsofProduct']['Stock'][index1]);
                 }else{
@@ -312,6 +315,28 @@ function ShowtypeB(){
     })
    
 } 
+let Itemsbought=[];
 function PushtoCart(){
-    CartFinal.push(this.getAttribute('Buy'))
+    CartFinal.push(this.getAttribute('Buy'));
+    
+    Cardarray.forEach(element => {
+        if (this.getAttribute('Buy')==element['name']){
+            Itemsbought.push({name: element['name'], Number:
+             document.getElementById(element['name']).value,
+              Price: document.getElementById(element['priceofProduct']).textContent })
+            window.localStorage.setItem('Item-Bought: ' + element['name'], JSON.stringify(Itemsbought));
+
+        }
+    });
+    //console.log(Itemsbought)
+    //calculate total and render cart
+    calculateTotal();
+   // renderCart();
+}
+function calculateTotal(){
+    total = 0;
+    for(let i = 0; i<Itemsbought.length; i++){
+        total += parseInt(Itemsbought[i]['Price'].split(" ")[0]) * parseInt(Itemsbought[i]['Number']);
+    }
+   window.localStorage.setItem('Total', total);
 }
