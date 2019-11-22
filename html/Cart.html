@@ -8,15 +8,15 @@
      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
      <link rel="stylesheet" href=" https://use.fontawesome.com/releases/v5.0.7/css/all.css">
     <!--my own style sheet-->
-    <link rel="stylesheet" href="style.css"/> 
+    <link rel="stylesheet" href="../style.css"/> 
 
     </head>
     <body>
         <header >
              <div class="container-fluid pl-0 pr-0" id="headertype">
-                <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar colormenu">
+                <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar colormenucart">
                     <a class="navbar-brand textcolorwhite" href="#">
-                        <img src="assets/Logo.png" height="50" alt="Wb">
+                        <img src="../assets/Logo.png" height="50" alt="Wb">
                     </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -25,7 +25,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li  class="nav-item active">
-                                <a class="nav-link fontuse textcolorwhite fontweightheavy fontsizebig" href="#">
+                                <a class="nav-link fontuse textcolorwhite fontweightheavy fontsizebig" href="../index.html">
                                     <h2>Lets Buy!</h2><span class="sr-only">(current)</span>
                                 </a>
                             </li> 
@@ -33,13 +33,26 @@
                             <div>
                                 <ul class="navbar-nav mr-auto"> 
                                     <li>
-                                        <a href="html/Cart.html">
-                                            <img src= assets/cart.png height="60" alt="cart">
+                                        <a href="#">
+                                            <img src= ../assets/cart.png height="60" alt="cart">
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="nav-link fontuse textcolorblack fontweightmedium textcolorwhite"  href="#"><h1>BUYMONO</h1></a>
+                                        <div>
+                                            &nbsp;
+                                        </div>
+                                        <div>
+                                            <a class="fontuse fontsizemedium textcolorblue" href="#"><u>Myaccount</u> &nbsp;</a>
+                                        </div>
                                     </li>
+                                    <li>
+                                        <form class="form-inline">
+                                            <div class="md-form my-0">
+                                                <input class="form-control fontuse mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                                            </div>
+                                        </form>                                        
+                                    </li>
+                                </ul>
                                 
                             </div>
                     </div>
@@ -47,13 +60,13 @@
             </div>
         </header>
         <div class="container-fluid pl-0 pr-0">
-            <div class="row falsespace">&nbsp;
+            <div class="row falsespace falsebody">&nbsp;
             </div>
             <div class="row">
-                <main id="items" class="col-sm-12 row text-center"></main>
+                <main id="cartitems" class="col-sm-12 row text-center"></main>
             </div>
         </div>
-        <footer class="page-footer font-small fontuse colormenu pt-4 fontsizeverysmall">
+        <footer class="page-footer font-small fontuse colormenucart pt-4 fontsizeverysmall">
             <div class="container-fluid text-center text-md-left">
                 <div class="row">
                     <hr class="clearfix w-100 d-md-none pb-3">
@@ -84,7 +97,7 @@
                     </div>
                     <div class="col-md-3 mb-md-0 mb-3 text-center">
                         <h5 >COMING SOON! </h5>
-                        <img src="assets/flamethrower.jpg" height="150" width="250"alt="Wb">
+                        <img src="../assets/flamethrower.jpg" height="150" width="250"alt="Wb">
                         <h5>flamethrower 3000</h5>
                     </div>
                 </div>
@@ -92,10 +105,7 @@
             <div class="footer-copyright text-center py-3">© 2018 Copyright:All rights reserved
                 <a href="https://mdbootstrap.com/education/bootstrap/"> Buymono.com</a>
             </div>  
-            <script src="Js/Productdatabase.js"></script>
-            <script src="Js/Products.js"></script>
-            <script src="JS/Initializeclasses.js"></script>
-            <script src="Js/myjavascript_vanilla.js"></script>
+            <script src="../Js/myjavscript_cart.js"></script>
         </footer>
     </body>
 </html>

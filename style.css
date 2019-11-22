@@ -5,18 +5,28 @@
  .colormenu
  {
      background-color: #ff6666;
-     border-radius:14px
+     border-radius:14px;
  }
- .colormenu :hover{
+ .colormenucart
+ {
+     background-color: #82ccdd;
+ }
+.colormenucart :hover{
+    color:black;
+}
+.colormenu :hover{
     color:black;
  }
- .textcolorwhite{
+.textcolorwhite{
     color:white;
  }
- .textcolorblack{
+.textcolorblack{
      color:black;
  }
- .fontuse{
+.textcolorblue{
+    color:blue;
+}
+.fontuse{
     font-family:Poppins, sans-serif, Arial, Helvetica;
 }
 .fontweightheavy{
@@ -117,6 +127,9 @@ body{
 }
 .falsespace{
     height:88px;
+}
+.falsebody{
+    height:488px;
 }
 .card{
     border-radius:12px;
