@@ -21,6 +21,8 @@ function renderProducts(){
         /*newNodeImage.style.width = '200px';*/
         newNodeImage.style.height = '250px';
         newNodeImage.src = element['logo'];
+        newNodeImage.id = element['logo'];
+
         // creating the price part
         let newNodePrice = document.createElement('p');
         newNodePrice.classList.add('card-text');
@@ -355,7 +357,8 @@ function PushtoCart(){
             Itemsbought.push({name: element['name'], 
             Number:document.getElementById(element['name']).value,
             Price: document.getElementById(element['priceofProduct']).textContent,
-            ProductType: productvalue });
+            ProductType: productvalue, 
+            image: document.getElementById(element['logo']).src });
             window.localStorage.setItem('Items-Bought', JSON.stringify(Itemsbought));
         }
     });
